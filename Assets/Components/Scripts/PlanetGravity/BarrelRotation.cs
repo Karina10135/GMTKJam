@@ -20,6 +20,7 @@ public class BarrelRotation : MonoBehaviour
             ScoreManager.scoreManager.SubtractPoints();
 
         }
+
     }
 
 

@@ -7,6 +7,7 @@ public class RockSpawner : MonoBehaviour
     public GameObject moon;
     public GameObject asteroidPrefab;
     public Transform[] spawnPoints;
+    public Transform[] wayPoints;
 
 
     private void Update()
@@ -17,11 +18,13 @@ public class RockSpawner : MonoBehaviour
         }
     }
 
+    
+
     public void AsteroidCreate()
     {
         int i = Random.RandomRange(0, spawnPoints.Length);
         var rock = Instantiate(asteroidPrefab, spawnPoints[i]);
-        rock.GetComponent<FauxGravityBody>().attractor = moon.GetComponent<FauxGravityAttractor>();
+        //rock.GetComponent<FauxGravityBody>().attractor = moon.GetComponent<FauxGravityAttractor>();
         rock = null;
     }
 
