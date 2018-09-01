@@ -13,7 +13,7 @@ public class FauxGravityBody : MonoBehaviour
     {
         myTransform = gameObject.transform;
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.useGravity = false;
     }
 
