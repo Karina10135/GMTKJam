@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212780234020960838}
   - component: {fileID: 50633500282948682}
   - component: {fileID: 61549505814970934}
+  - component: {fileID: 114418860723262224}
   m_Layer: 9
   m_Name: Meteor
   m_TagString: Asteroid
@@ -87,6 +88,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4, y: 3.93}
   m_EdgeRadius: 0
+--- !u!114 &114418860723262224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779576807421882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d1968c1c96f2746939b452893fa21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepSpeed: 50
+  wayPoints: []
+  to: {fileID: 0}
 --- !u!212 &212780234020960838
 SpriteRenderer:
   m_ObjectHideFlags: 1
