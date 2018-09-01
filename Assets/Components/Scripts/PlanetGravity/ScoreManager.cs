@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddPoints()
     {
-        points--;
+        points++;
         scoreText.text = "Score: " + points.ToString();
 
     }

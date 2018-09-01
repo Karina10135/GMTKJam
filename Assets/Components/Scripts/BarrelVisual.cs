@@ -9,13 +9,11 @@ public class BarrelVisual : MonoBehaviour
     {
         if (positive)
         {
-            //transform.RotateAround(transform.position, speed * Time.deltaTime);
             transform.RotateAroundLocal(Vector3.back, speed * Time.deltaTime);
 
         }
         else
         {
-            //transform.RotateAround(transform.position, -speed * Time.deltaTime);
             transform.RotateAroundLocal(Vector3.back, -speed * Time.deltaTime);
 
         }
