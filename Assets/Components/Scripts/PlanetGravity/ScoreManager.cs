@@ -13,19 +13,21 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         scoreManager = this;
-        
+        scoreText.text = "Score: " + points.ToString();
     }
 
     public void AddPoints()
     {
         points--;
-        scoreText.text = points.ToString();
+        scoreText.text = "Score: " + points.ToString();
+
     }
 
     public void SubtractPoints()
     {
         points--;
-        scoreText.text = points.ToString();
+        scoreText.text = "Score: " + points.ToString();
+
 
     }
 }

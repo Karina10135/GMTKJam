@@ -5,6 +5,7 @@ using UnityEngine;
 public class BarrelControl : MonoBehaviour
 {
     public GameObject player;
+    public GameObject barrelSprite;
     public Transform left;
     public Transform right;
     public float moveSpeed;
@@ -12,8 +13,11 @@ public class BarrelControl : MonoBehaviour
     public float minDistance;
     public float maxDistance;
 
-    float push;
+    public BarrelRotation barrelRotation;
 
+    bool moved;
+    float push;
+    bool positive;
     bool moving;
     float orgSpeed;
     Vector3 moveDir;
@@ -21,26 +25,35 @@ public class BarrelControl : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+
+        //rb = GetComponent<Rigidbody>();
+
         moving = false;
         orgSpeed = moveSpeed;
     }
 
     private void FixedUpdate()
     {
-        moveDir = new Vector3(push, 0, 0).normalized;
-        rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
+        if(rb != null)
+        {
+            moveDir = new Vector3(push, 0, 0).normalized;
+            rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
+        }
+
         PushBarrel();
 
-        //if (moving)
-        //{
-        //    rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
+        if (moved)
+        {
+            barrelSprite.GetComponent<BarrelVisual>().Barrel(positive, moveSpeed);
 
-        //}
+        }
     }
+
+    
 
     private void Update()
     {
+
     }
 
     private void OnDrawGizmos()
@@ -58,17 +71,26 @@ public class BarrelControl : MonoBehaviour
         
         if(leftDst > maxDistance && rightDst > maxDistance) //if its more than maxdistance
         {
+            if (!moved) { return; }
             moveSpeed = orgSpeed;
+            moveSpeed -= Time.deltaTime;
             moving = false;
+            barrelRotation.RotateWorld(positive, moveSpeed);
+
+
         }
 
         if (leftDst < maxDistance && leftDst > minDistance)
         {
-            
+            moved = true;
             push = 1;
             moving = true;
-            if(leftDst < .5 && leftDst > .4)
+
+
+            if(leftDst < .6 && leftDst > .3) //Moving left
             {
+                barrelRotation.RotateWorld(false, moveSpeed);
+
                 if (moveSpeed < maxSpeed)
                 {
                     moveSpeed += Time.deltaTime;
@@ -90,27 +112,43 @@ public class BarrelControl : MonoBehaviour
                 }
             }
 
-            
+            positive = false;
+            barrelRotation.RotateWorld(positive, moveSpeed);
         }
 
-        if (rightDst < maxDistance && rightDst > minDistance)
+        if (rightDst < maxDistance && rightDst > minDistance) //Moving right
         {
+            moved = true;
             push = -1;
             moving = true;
 
-            //if (leftDst < .5 && leftDst > .4)
-            //{
-
-            //}
-
-            if (moveSpeed < maxSpeed)
+            if (rightDst < .6 && rightDst > .3) //Moving left
             {
-                moveSpeed += Time.deltaTime;
+                //barrelRotation.RotateWorld(true, moveSpeed);
+
+                if (moveSpeed < maxSpeed)
+                {
+                    moveSpeed += Time.deltaTime;
+                }
+                else
+                {
+                    moveSpeed = maxSpeed;
+                }
             }
             else
             {
-                moveSpeed = maxSpeed;
+                if (moveSpeed > orgSpeed)
+                {
+                    moveSpeed -= Time.deltaTime;
+                }
+                else
+                {
+                    moveSpeed = orgSpeed;
+                }
             }
+
+            positive = true;
+            barrelRotation.RotateWorld(positive, moveSpeed);
         }
 
         //0.7

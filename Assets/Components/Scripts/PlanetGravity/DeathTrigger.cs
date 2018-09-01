@@ -8,7 +8,7 @@ public class DeathTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            print("Loser");
+            print("AHHHGHHHHH");
         }
     }
 
