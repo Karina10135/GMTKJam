@@ -10,6 +10,7 @@ public class DeathTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioManager.audioManager.FadeSound();
             Transform pos = other.gameObject.transform;
             other.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
             GameManager.gm.Barrel.GetComponent<BarrelControl>().Death();
@@ -21,7 +22,6 @@ public class DeathTrigger : MonoBehaviour
                 blood.transform.SetParent(null);
             }
 
-            print("AHHHGHHHHH");
         }
     }
 

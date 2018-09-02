@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour {
     public void Direction(bool state)
     {
         right = state;
+        print(right);
     }
 
 
