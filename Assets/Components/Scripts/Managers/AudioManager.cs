@@ -14,12 +14,8 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         audioManager = this;
-        if (audioManager != this)
-        {
-            Destroy(this);
-        }
+        
 
-        DontDestroyOnLoad(this);
         source = Camera.main.GetComponent<AudioSource>();
     }
 

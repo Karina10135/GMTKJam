@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BarrelRotation : MonoBehaviour
 {
-    public GameObject player;
-    
 
     public void RotateWorld(bool rotation, float speed)
     {

@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d1968c1c96f2746939b452893fa21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barrel: {fileID: 1201372843235894, guid: 34333f4450fffc046888eb93b0dea9d1, type: 2}
   stepSpeed: 5
   wayPoints: []
   to: {fileID: 0}

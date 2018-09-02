@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    
+    public GameObject barrel;
     public float stepSpeed;
     public Transform[] wayPoints;
     public Transform to;
@@ -78,8 +78,15 @@ public class Asteroid : MonoBehaviour
             Transform pos = other.gameObject.transform;
             //other.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
             GameManager.gm.Death();
-            //other.GetComponent<PlayerController>().enabled = false;
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<PlayerControl2D>().enabled = false;
+            other.gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+            other.gameObject.transform.SetParent(null);
+            var magnitude = 5000;
+            var force = transform.position - other.transform.position;
+            force.Normalize();
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(-force * magnitude);
+            
+            //Destroy(other.gameObject);
             if (deathVFX != null)
             {
                 var blood = Instantiate(deathVFX, pos);
@@ -87,6 +94,30 @@ public class Asteroid : MonoBehaviour
 
             }
         }
+
+        //if (other.gameObject.CompareTag("Barrel"))
+        //{
+        //    print("Barrel");
+        //    AudioManager.audioManager.FadeSound();
+        //    Transform pos = other.gameObject.transform;
+        //    GameManager.gm.Death();
+
+        //    var magnitude = 5000;
+        //    var force = transform.position - other.transform.position;
+        //    force.Normalize();
+        //    var hit = Instantiate(barrel, other.transform);
+        //    hit.transform.parent = null;
+        //    Destroy(other.gameObject);
+        //    hit.gameObject.GetComponent<Rigidbody2D>().AddForce(-force * magnitude);
+
+        //    if (deathVFX != null)
+        //    {
+        //        var blood = Instantiate(deathVFX, pos);
+        //        blood.transform.SetParent(null);
+
+        //    }
+        //}
+
     }
 
     
