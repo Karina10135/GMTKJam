@@ -73,4 +73,5 @@ public class UINav : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         anim.SetInteger("BarrelState", state);
     }
+
 }
