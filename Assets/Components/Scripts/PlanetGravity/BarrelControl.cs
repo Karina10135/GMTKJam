@@ -5,7 +5,7 @@ using UnityEngine;
 public class BarrelControl : MonoBehaviour
 {
     public GameObject player;
-    public GameObject barrelSprite;
+    public BarrelVisual barrelSprite;
     public Transform left;
     public Transform right;
     public float moveSpeed;
@@ -70,91 +70,105 @@ public class BarrelControl : MonoBehaviour
         var targetPos = player.transform.position;
         var leftDst = Vector3.Distance(left.position, targetPos);
         var rightDst = Vector3.Distance(right.position, targetPos);
-        
-        if(leftDst > maxDistance && rightDst > maxDistance) //if its more than maxdistance
+
+        if(leftDst < rightDst) //moving left
         {
-            if (!moved) { return; }
-            moveSpeed = orgSpeed;
-            moveSpeed -= Time.deltaTime;
-            moving = false;
-            barrelRotation.RotateWorld(positive, moveSpeed);
-
-
+            barrelSprite.Barrel(false, moveSpeed);
+        }
+        else if(rightDst < leftDst) //moving right
+        {
+            barrelSprite.Barrel(true, moveSpeed);
         }
 
-        if (leftDst < maxDistance && leftDst > minDistance)
-        {
-            moved = true;
-            push = 1;
-            moving = true;
+# region Green
+
+        //if(leftDst > maxDistance && rightDst > maxDistance) //if its more than maxdistance
+        //{
+        //    if (!moved) { return; }
+        //    moveSpeed = orgSpeed;
+        //    moveSpeed -= Time.deltaTime;
+        //    moving = false;
+        //    barrelRotation.RotateWorld(positive, moveSpeed);
 
 
-            if(leftDst < .6 && leftDst > .3) //Moving left
-            {
-                barrelRotation.RotateWorld(false, moveSpeed);
+        //}
 
-                if (moveSpeed < maxSpeed)
-                {
-                    moveSpeed += Time.deltaTime;
-                }
-                else
-                {
-                    moveSpeed = maxSpeed;
-                }
-            }
-            else
-            {
-                if (moveSpeed > orgSpeed)
-                {
-                    moveSpeed -= Time.deltaTime;
-                }
-                else
-                {
-                    moveSpeed = orgSpeed;
-                }
-            }
 
-            positive = false;
-            barrelRotation.RotateWorld(positive, moveSpeed);
-        }
+        //if (leftDst < maxDistance && leftDst > minDistance)
+        //{
+        //    moved = true;
+        //    push = 1;
+        //    moving = true;
 
-        if (rightDst < maxDistance && rightDst > minDistance) //Moving right
-        {
-            moved = true;
-            push = -1;
-            moving = true;
 
-            if (rightDst < .6 && rightDst > .3) //Moving left
-            {
-                //barrelRotation.RotateWorld(true, moveSpeed);
+        //    if(leftDst < .6 && leftDst > .3) //Moving left
+        //    {
+        //        barrelRotation.RotateWorld(false, moveSpeed);
 
-                if (moveSpeed < maxSpeed)
-                {
-                    moveSpeed += Time.deltaTime;
-                }
-                else
-                {
-                    moveSpeed = maxSpeed;
-                }
-            }
-            else
-            {
-                if (moveSpeed > orgSpeed)
-                {
-                    moveSpeed -= Time.deltaTime;
-                }
-                else
-                {
-                    moveSpeed = orgSpeed;
-                }
-            }
+        //        if (moveSpeed < maxSpeed)
+        //        {
+        //            moveSpeed += Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            moveSpeed = maxSpeed;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (moveSpeed > orgSpeed)
+        //        {
+        //            moveSpeed -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            moveSpeed = orgSpeed;
+        //        }
+        //    }
 
-            positive = true;
-            barrelRotation.RotateWorld(positive, moveSpeed);
-        }
+        //    positive = false;
+        //    barrelRotation.RotateWorld(positive, moveSpeed);
+        //}
+
+        //if (rightDst < maxDistance && rightDst > minDistance) //Moving right
+        //{
+        //    moved = true;
+        //    push = -1;
+        //    moving = true;
+
+        //    if (rightDst < .6 && rightDst > .3) //Moving left
+        //    {
+        //        //barrelRotation.RotateWorld(true, moveSpeed);
+
+        //        if (moveSpeed < maxSpeed)
+        //        {
+        //            moveSpeed += Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            moveSpeed = maxSpeed;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (moveSpeed > orgSpeed)
+        //        {
+        //            moveSpeed -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            moveSpeed = orgSpeed;
+        //        }
+        //    }
+
+        //    positive = true;
+        //    barrelRotation.RotateWorld(positive, moveSpeed);
+        //}
 
         //0.7
         //0.3 unitil too close.
+#endregion
+
 
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BarrelVisual : MonoBehaviour
 {
+    public BarrelRotation moon; 
 
     public void Barrel(bool positive, float speed)
     {
@@ -17,5 +18,6 @@ public class BarrelVisual : MonoBehaviour
             transform.RotateAroundLocal(Vector3.back, -speed * Time.deltaTime);
 
         }
+        moon.RotateWorld(positive, speed);
     }
 }

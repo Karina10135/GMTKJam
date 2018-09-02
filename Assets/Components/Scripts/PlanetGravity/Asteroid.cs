@@ -10,6 +10,7 @@ public class Asteroid : MonoBehaviour
     public Transform to;
     private float lerpTime = 5;
     private float currentLerpTime = 0;
+    public ParticleSystem deathVFX;
     public bool destroy;
     int currentPoint;
 
@@ -65,6 +66,24 @@ public class Asteroid : MonoBehaviour
 
         currentLerpTime = 0;
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            AudioManager.audioManager.FadeSound();
+            Transform pos = other.gameObject.transform;
+            //other.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
+            GameManager.gm.Barrel.GetComponent<BarrelControl>().Death();
+            //other.GetComponent<PlayerController>().enabled = false;
+            Destroy(other.gameObject);
+            if (deathVFX != null)
+            {
+                var blood = Instantiate(deathVFX, pos);
+                blood.transform.SetParent(null);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision other)
