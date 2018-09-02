@@ -5,7 +5,7 @@ using UnityEngine;
 public class RockSpawner : MonoBehaviour
 {
     public GameObject moon;
-    public GameObject asteroidPrefab;
+    public GameObject[] asteroidPrefabs;
     public Transform[] spawnPoints;
 
     [System.Serializable]
@@ -33,7 +33,8 @@ public class RockSpawner : MonoBehaviour
     public void AsteroidCreate()
     {
         int n = Random.RandomRange(0, spawnPoints.Length);
-        var rock = Instantiate(asteroidPrefab, spawnPoints[n]);
+        int a = Random.RandomRange(0, asteroidPrefabs.Length);
+        var rock = Instantiate(asteroidPrefabs[a], spawnPoints[n]);
         var asteroid = rock.GetComponent<Asteroid>();
 
         asteroid.wayPoints = new Transform[ways[n].wayPoints.Length];

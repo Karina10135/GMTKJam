@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    
     public float stepSpeed;
     public Transform[] wayPoints;
     public Transform to;
+    private float lerpTime = 5;
+    private float currentLerpTime = 0;
+    public bool destroy;
     int currentPoint;
 
 
@@ -22,8 +26,10 @@ public class Asteroid : MonoBehaviour
         if (to != null)
         {
             float step = stepSpeed * Time.deltaTime;
-
+            
             transform.position = Vector3.MoveTowards(transform.position, to.position, step);
+            transform.RotateAroundLocal(Vector3.back, stepSpeed * Time.deltaTime);
+
         }
 
         if(transform.position == to.position)
@@ -39,7 +45,16 @@ public class Asteroid : MonoBehaviour
     {
         if(to == wayPoints[wayPoints.Length - 1])
         {
-            Destroy(gameObject);
+            if (destroy)
+            {
+                Destroy(gameObject);
+
+            }
+            else
+            {
+                currentPoint = 0;
+                to = wayPoints[currentPoint];
+            }
 
         }
         else
@@ -47,6 +62,8 @@ public class Asteroid : MonoBehaviour
             currentPoint++;
             to = wayPoints[currentPoint];
         }
+
+        currentLerpTime = 0;
 
     }
 
