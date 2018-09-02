@@ -19,6 +19,10 @@ public class RockSpawner : MonoBehaviour
     public WayPointGroup[] ways;
 
 
+    public void Start()
+    {
+        StartCoroutine(StartTime());    
+    }
 
     private void Update()
     {
@@ -48,6 +52,10 @@ public class RockSpawner : MonoBehaviour
         rock = null;
     }
 
-
+    IEnumerator StartTime()
+    {
+        yield return new WaitForSeconds(10);
+        AsteroidCreate();
+    }
 
 }

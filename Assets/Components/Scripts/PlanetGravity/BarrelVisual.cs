@@ -12,12 +12,14 @@ public class BarrelVisual : MonoBehaviour
         {
             transform.RotateAroundLocal(Vector3.back, speed * Time.deltaTime);
 
+
         }
         else
         {
             transform.RotateAroundLocal(Vector3.back, -speed * Time.deltaTime);
-
         }
+
         moon.RotateWorld(positive, speed);
+
     }
 }

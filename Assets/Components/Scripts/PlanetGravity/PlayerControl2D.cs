@@ -15,6 +15,8 @@ public class PlayerControl2D : MonoBehaviour
 
     private void Update()
     {
+        
+
         MoveDirection();
     }
 
@@ -25,12 +27,12 @@ public class PlayerControl2D : MonoBehaviour
         if (moveDir.x < 0)
         {
             transform.RotateAround(barrel.gameObject.transform.position, Vector3.forward, playerSpeed * Time.deltaTime);
-            //transform.RotateAround(barrel.gameObject.transform.position, playerSpeed * Time.deltaTime);
 
         }
         if (moveDir.x > 0)
         {
             transform.RotateAround(barrel.gameObject.transform.position, Vector3.forward, -playerSpeed * Time.deltaTime);
+
         }
     }
 

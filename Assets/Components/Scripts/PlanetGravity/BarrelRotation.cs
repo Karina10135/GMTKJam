@@ -12,14 +12,12 @@ public class BarrelRotation : MonoBehaviour
 
         if (rotation)
         {
-            player.GetComponent<PlayerController>().Direction(true);
             transform.RotateAround(transform.position, speed * Time.deltaTime);
             ScoreManager.scoreManager.AddPoints();
 
         }
         else
         {
-            player.GetComponent<PlayerController>().Direction(false);
             transform.RotateAround(transform.position, -speed * Time.deltaTime);
             ScoreManager.scoreManager.SubtractPoints();
 

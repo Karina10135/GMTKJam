@@ -12,9 +12,7 @@ public class DeathTrigger : MonoBehaviour
         {
             AudioManager.audioManager.FadeSound();
             Transform pos = other.gameObject.transform;
-            //other.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
-            GameManager.gm.Barrel.GetComponent<BarrelControl>().Death();
-            //other.GetComponent<PlayerController>().enabled = false;
+            GameManager.gm.Death();
             Destroy(other.gameObject);
             if (deathVFX != null)
             {

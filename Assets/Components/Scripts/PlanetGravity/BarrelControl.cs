@@ -16,7 +16,7 @@ public class BarrelControl : MonoBehaviour
     public BarrelRotation barrelRotation;
 
     bool dead;
-    bool moved;
+    public bool moved;
     float push;
     bool positive;
     bool moving;
@@ -36,19 +36,15 @@ public class BarrelControl : MonoBehaviour
     private void FixedUpdate()
     {
         if (dead) { return; }
-        if(rb != null)
+        
+        if(Input.GetAxis("Horizontal") != 0)
         {
-            moveDir = new Vector3(push, 0, 0).normalized;
-            rb.MovePosition(rb.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
+            moved = true;
         }
 
+        if (!moved) { return; }
         PushBarrel();
 
-        if (moved)
-        {
-            barrelSprite.GetComponent<BarrelVisual>().Barrel(positive, moveSpeed);
-
-        }
     }
 
     
@@ -75,7 +71,8 @@ public class BarrelControl : MonoBehaviour
         {
             barrelSprite.Barrel(false, moveSpeed);
         }
-        else if(rightDst < leftDst) //moving right
+
+        if (rightDst < leftDst) //moving right
         {
             barrelSprite.Barrel(true, moveSpeed);
         }
@@ -176,7 +173,6 @@ public class BarrelControl : MonoBehaviour
     {
         dead = true;
     }
-
 
 
 }

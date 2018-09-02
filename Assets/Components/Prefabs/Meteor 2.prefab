@@ -175,9 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d1968c1c96f2746939b452893fa21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSpeed: 10
+  stepSpeed: 5
   wayPoints: []
   to: {fileID: 0}
+  deathVFX: {fileID: 0}
   destroy: 1
 --- !u!212 &212780234020960838
 SpriteRenderer:

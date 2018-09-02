@@ -6,12 +6,46 @@ public class GameManager : MonoBehaviour
 {
     public GameObject Moon;
     public GameObject Barrel;
-
+    public GameObject RockSpawner;
+    public GameObject PausePanel;
+    public bool isPaused;
     public static GameManager gm;
 
     private void Start()
     {
         gm = this;
+        isPaused = false;
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+            
+        }
+    }
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+
+        if (PausePanel != null)
+        {
+            PausePanel.SetActive(isPaused);
+
+        }
     }
 
+    public void Death()
+    {
+        Barrel.GetComponent<BarrelControl>().Death();
+        ScoreManager.scoreManager.EndResult();
+    }
 }

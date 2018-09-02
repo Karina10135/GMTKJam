@@ -36,6 +36,7 @@ public class Asteroid : MonoBehaviour
         if(transform.position == to.position)
         {
             NextMove();
+
         }
 
 
@@ -48,6 +49,7 @@ public class Asteroid : MonoBehaviour
         {
             if (destroy)
             {
+                GameManager.gm.RockSpawner.GetComponent<RockSpawner>().AsteroidCreate();
                 Destroy(gameObject);
 
             }
@@ -75,35 +77,19 @@ public class Asteroid : MonoBehaviour
             AudioManager.audioManager.FadeSound();
             Transform pos = other.gameObject.transform;
             //other.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
-            GameManager.gm.Barrel.GetComponent<BarrelControl>().Death();
+            GameManager.gm.Death();
             //other.GetComponent<PlayerController>().enabled = false;
             Destroy(other.gameObject);
             if (deathVFX != null)
             {
                 var blood = Instantiate(deathVFX, pos);
                 blood.transform.SetParent(null);
+
             }
         }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            AudioManager.audioManager.FadeSound();
-            GameObject p = other.gameObject.GetComponentInParent<FauxGravityBody>().gameObject;
-            p.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
-            GameManager.gm.Barrel.GetComponent<BarrelControl>().Death();
-            p.GetComponent<PlayerController>().enabled = false;
-            Destroy(other.gameObject);
-            Transform pos = other.gameObject.transform;
+    
 
-            //if (deathVFX != null)
-            //{
-            //    var blood = Instantiate(deathVFX, pos);
-            //    blood.transform.SetParent(null);
-            //}
-        }
-    }
 
 }
