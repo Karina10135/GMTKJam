@@ -8,6 +8,8 @@ public class BarrelVisual : MonoBehaviour
 
     public void Barrel(bool positive, float speed)
     {
+        if (GameManager.gm.isPaused) { return; }
+        if (GameManager.gm.done) { return; }
         if (positive)
         {
             transform.RotateAroundLocal(Vector3.back, speed * Time.deltaTime);

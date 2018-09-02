@@ -79,13 +79,13 @@ public class Asteroid : MonoBehaviour
             //other.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
             GameManager.gm.Death();
             other.gameObject.GetComponent<PlayerControl2D>().enabled = false;
-            other.gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
             other.gameObject.transform.SetParent(null);
             var magnitude = 5000;
             var force = transform.position - other.transform.position;
             force.Normalize();
+            //other.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 500);
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(-force * magnitude);
-            
+
             //Destroy(other.gameObject);
             if (deathVFX != null)
             {

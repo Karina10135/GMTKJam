@@ -15,8 +15,8 @@ public class AudioManager : MonoBehaviour
     {
         audioManager = this;
         
-
         source = Camera.main.GetComponent<AudioSource>();
+        source.volume = 1;
     }
 
     public void Update()
@@ -27,7 +27,6 @@ public class AudioManager : MonoBehaviour
             {
                 currentFade = 0;
                 fade = false;
-                //source.volume = 1;
             }
             else
             {

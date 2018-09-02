@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject RockSpawner;
     public GameObject PausePanel;
     public bool isPaused;
+    public bool done;
     public static GameManager gm;
 
     private void Start()
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     }
     public void Update()
     {
+        if (done) { return; }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
+        done = true;
         Barrel.GetComponent<BarrelControl>().Death();
         ScoreManager.scoreManager.EndResult();
     }
