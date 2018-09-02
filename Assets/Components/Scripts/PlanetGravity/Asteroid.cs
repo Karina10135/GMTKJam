@@ -67,4 +67,24 @@ public class Asteroid : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            AudioManager.audioManager.FadeSound();
+            GameObject p = other.gameObject.GetComponentInParent<FauxGravityBody>().gameObject;
+            p.GetComponent<FauxGravityBody>().attractor = GameManager.gm.Moon.GetComponent<FauxGravityAttractor>();
+            GameManager.gm.Barrel.GetComponent<BarrelControl>().Death();
+            p.GetComponent<PlayerController>().enabled = false;
+            Destroy(other.gameObject);
+            Transform pos = other.gameObject.transform;
+
+            //if (deathVFX != null)
+            //{
+            //    var blood = Instantiate(deathVFX, pos);
+            //    blood.transform.SetParent(null);
+            //}
+        }
+    }
+
 }
