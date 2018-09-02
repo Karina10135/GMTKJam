@@ -15,6 +15,7 @@ public class BarrelControl : MonoBehaviour
 
     public BarrelRotation barrelRotation;
 
+    bool dead;
     bool moved;
     float push;
     bool positive;
@@ -34,6 +35,7 @@ public class BarrelControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (dead) { return; }
         if(rb != null)
         {
             moveDir = new Vector3(push, 0, 0).normalized;
@@ -154,6 +156,11 @@ public class BarrelControl : MonoBehaviour
         //0.7
         //0.3 unitil too close.
 
+    }
+
+    public void Death()
+    {
+        dead = true;
     }
 
 
