@@ -139,7 +139,7 @@ MonoBehaviour:
   stepSpeed: 5
   wayPoints: []
   to: {fileID: 0}
-  deathVFX: {fileID: 0}
+  deathVFX: {fileID: 198678138446825990, guid: e222d96db9742b14f9e92dd05b4fc49e, type: 2}
   destroy: 1
 --- !u!212 &212780234020960838
 SpriteRenderer:
