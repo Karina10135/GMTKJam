@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         if (done) { return; }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseGame();
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    PauseGame();
             
-        }
+        //}
     }
     public void PauseGame()
     {

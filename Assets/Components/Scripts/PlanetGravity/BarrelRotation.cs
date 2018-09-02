@@ -7,8 +7,8 @@ public class BarrelRotation : MonoBehaviour
 
     public void RotateWorld(bool rotation, float speed)
     {
-        if (GameManager.gm.isPaused) { return; }
-        if (GameManager.gm.done) { return; }
+        //if (GameManager.gm.isPaused) { return; }
+        //if (GameManager.gm.done) { return; }
 
         if (rotation)
         {

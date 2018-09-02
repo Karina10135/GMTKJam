@@ -67,7 +67,9 @@ public class BarrelControl : MonoBehaviour
         var leftDst = Vector3.Distance(left.position, targetPos);
         var rightDst = Vector3.Distance(right.position, targetPos);
 
-        if(leftDst < rightDst) //moving left
+        if (GameManager.gm.isPaused) { return; }
+
+        if (leftDst < rightDst) //moving left
         {
             barrelSprite.Barrel(false, moveSpeed);
         }

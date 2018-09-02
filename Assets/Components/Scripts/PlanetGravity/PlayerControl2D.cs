@@ -16,7 +16,7 @@ public class PlayerControl2D : MonoBehaviour
     private void Update()
     {
         if (GameManager.gm.isPaused) { return; }
-        if (GameManager.gm.done) { return; }
+        //if (GameManager.gm.done) { return; }
 
         MoveDirection();
     }
